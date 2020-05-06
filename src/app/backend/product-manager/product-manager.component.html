@@ -1,0 +1,49 @@
+
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb my-breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Product Manager</li>
+        </ol>
+      </nav>
+
+      <div class="chart">
+          <div class="">
+            <div class="card text-center card_border">
+              <div class="card-header chart-grid__header">
+                Product Manager
+              </div>
+              <div class="card-body">
+                <table class="table">
+                  <thead>
+                            <tr>
+                                <th scope="col">Image</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Description</th>
+                                <th></th>
+                                <th></th>
+                                <th><a class="btn btn-success" routerLink="/admin/product-add">Add</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let pro of products | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize'>
+                                <th scope="row"><img style="width: 60px;" class="card-img-top" src="{{ pro.img }}"></th>
+                                <td>{{ pro.name }}</td>
+                                <td>${{ pro.price }}</td>
+                                <td>{{ pro.desc }}</td>
+                                <td><a class="btn btn-info" routerLink="/admin/product-detail/{{ pro.id }}" >Detail</a></td>
+                                <td><a class="btn btn-warning " routerLink="/admin/product-edit/{{ pro.id }}" >Edit</a></td>
+                                <td><a class="btn btn-danger" (click)="deleteProduct(pro.id)">Delete</a></td>
+                            </tr>
+                        </tbody>
+                </table>
+                <ngb-pagination
+                  [(page)]="page"
+                  [pageSize]="pageSize"
+                  [collectionSize]="products.length">
+                </ngb-pagination>
+              </div>
+            </div>
+          </div>
+
+      </div>

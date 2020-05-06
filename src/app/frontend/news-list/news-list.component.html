@@ -1,0 +1,37 @@
+<section class="ab-info-main py-5">
+  <div class="container py-lg-3">
+      <div class="ab-info-grids">
+          <h3 class="tittle text-center mb-lg-5 mb-3">Blog Posts</h3>
+          <div id="products" class="row view-group">
+              <div class="item col-lg-4 mt-lg-4" *ngFor="let pro of new | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+                  <div class="thumbnail card">
+                      <div class="img-event">
+                          <img class="group list-group-image img-fluid" src="{{pro.avatar}}" alt="" style="width: 348px; height: 174px;"/>
+                      </div>
+                      <div class="caption card-body">
+                          <h4 class="group card-title inner list-group-item-heading">
+                            {{pro.title}}</h4>
+                          <p class="group inner list-group-item-text">
+                            {{pro.content}}</p>
+                          <div class="row">
+                              <div class="col-6">
+                                  <p class="lead">
+                                      $ {{pro.price}}</p>
+                              </div>
+                              <div class="col-6 ban-buttons">
+                                  <a class="btn btn-course"  routerLink="/blog-single/{{ pro.id }}">View More</a>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <ngb-pagination
+                [(page)]="page"
+                [pageSize]="pageSize"
+                [collectionSize]="new.length" >
+      </ngb-pagination >
+  </div>
+</section>
+
